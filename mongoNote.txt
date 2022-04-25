@@ -1,0 +1,62 @@
+1. To check the version
+    - C:\Program Files\MongoDB\Server\4.4\bin\mongo.exe" --version
+    - C:\Program Files\MongoDB\Server\4.4\bin\mongod.exe" --version
+
+2. Run
+    - mongo
+3. Check database
+    - show dbs
+4. create databse:
+    - use database_name
+6. current database:
+    - db
+7. Collections
+    - shoe collections
+
+
+
+-- In the mongo the row called as the document and the column called as the field and the table called collection
+
+**CRUD:
+    * insert data in database (create)
+        //single document
+        - db.collectionName.insertOne({name:"ReactJS",type:"Front End",videos:20,active:true})
+        // multiple document  
+        -db.firstDatabase.insertMany([{name:"ExpressJS",type:"Connection",videos:10,active:true},{name:"Nodejs",type:"Back End",videos:30,active:true}])
+
+    * get data from collection: (read)
+        - db.firstDatabase.find(query, projection).pretty()
+
+        //get the perticular document in the collection nmaed MongoDB.
+        - db.firstDatabase.find({name:"MongoDB"}).pretty()
+
+        //get the perticular field in the collection.(_id default)
+        - db.firstDatabase.find({name:"MongoDB"},{name:1}).pretty()
+            > { "_id" : ObjectId("604e1b2ac977b7443a79e1d6"), "name" : "MongoDB" }
+
+        //get the perticular field in the collection with out id
+        - db.firstDatabase.find({name:"MongoDB"},{name:1}).pretty()
+            > { "name" : "MongoDB" }
+
+        // get the first field with active :true
+        - db.firstDatabase.find({active:true}).pretty().limit(1)         
+            > {
+                        "_id" : ObjectId("604b8f29b02ae184be7861be"),
+                        "name" : "ReactJS",
+                        "type" : "Front End",
+                        "videos" : 20,
+                        "active" : true
+                }
+
+        - db.firstDatabase.findOne({active:true})          //do the same as above
+        
+        // get the second field of with active: true
+        - db.firstDatabase.find({active:true}).pretty().limit(1).skip(1)
+            - {
+                        "_id" : ObjectId("604e1b2ac977b7443a79e1d6"),
+                        "name" : "MongoDB",
+                        "type" : "Database",
+                        "videos" : 22,
+                        "active" : true
+                }
+
